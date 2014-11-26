@@ -1,0 +1,9 @@
+#!/bin/bash
+# Absolute path to this script. /home/user/bin/foo.sh
+SCRIPT=$(readlink -f $0)
+# Absolute path this script is in. /home/user/bin
+SCRIPTPATH=`dirname $SCRIPT`
+
+docker run -p 6080:6080 -p 11311:11311 -v $SCRIPTPATH/workspaceSrc:/home/ros/workspace/src -t -i osblinnikov/rosdocker $1
+#ROSDOCKER=$(docker run -t -i -d=true osblinnikov/ros)
+#pipework br1 $ROSDOCKER 192.168.1.1/24
